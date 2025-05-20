@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: mecsys4all
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL:debug}
+
+management:
+  metrics:
+    tags:
+      application: of-consents-backend
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, loggers
+      path-mapping:
+        prometheus: metrics
+  endpoint:
+    loggers:
+      enabled: true
+
+localstack:
+  endpoint: http://localhost:4566
+  region: us-east-1
+  accessKey: teste
+  secretKey: teste
+
+app:
+  version: ^project.version^
+  name: ^project.name^
+  description: ^project.description^
