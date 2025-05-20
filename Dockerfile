@@ -1,4 +1,4 @@
-FROM sensedia/openjdk21-base
+FROM sensedia/openjdk21-base:multi-arch
 LABEL maintainer="Isaac Mecchi"
 WORKDIR /opt/app
 COPY target/*.jar mecsys4all.jar
