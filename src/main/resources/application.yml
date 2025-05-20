@@ -7,7 +7,7 @@ server:
 
 logging:
   level:
-    root: ${LOGGING_LEVEL:debug}
+    root: ${LOGGING_LEVEL:info}
 
 management:
   metrics:
