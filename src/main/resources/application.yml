@@ -10,9 +10,6 @@ logging:
     root: ${LOGGING_LEVEL:info}
 
 management:
-  metrics:
-    tags:
-      application: of-consents-backend
   endpoints:
     web:
       exposure:
