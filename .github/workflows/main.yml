@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push-image:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.40-arm
 
     permissions:
       contents: read
