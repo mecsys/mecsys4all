@@ -17,7 +17,7 @@ export let options = {
     },
 };
 
-const only422Callback = http.expectedStatuses(422);
+const only200Callback = http.expectedStatuses(200);
 const foo = 'boo';
 const params = {
     headers: {
@@ -25,18 +25,18 @@ const params = {
       'environmentId': 'change_me',
       'customerId': 'change_me'
     },
-    responseCallback: only422Callback
+    responseCallback: only200Callback
   };
 const url = `https://mecsys4all.mecsys.com.br/greeting`
 //console.log(params);
 //console.log(url);
 
 export default function () {
-    const res = http.get(url, params, only422Callback);
+    const res = http.get(url, params, only200Callback);
 
-    // Check if the response status is 422
+    // Check if the response status is 200
     check(res, {
-        'status is 422': (r) => r.status === 422,
+        'status is 200': (r) => r.status === 200,
     });
 
     // Simulate a small pause between requests
