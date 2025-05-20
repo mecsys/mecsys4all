@@ -1,0 +1,59 @@
+name: CI/CD for Spring Boot App
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: build and deploy spring-api
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: unit tests
+        run: mvn -B test --file pom.xml
+
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@v1.2.0
+        env:
+          SONAR_SCANNER_OPTS: -X
+        with:
+          host: ${{ secrets.SONARQUBE_HOST }}
+          login: ${{ secrets.SONARQUBE_TOKEN }}
+          projectBaseDir: "src/"
+          projectKey: "my-custom-project"
+
+      - name: Build with Maven
+        run: |
+          mvn clean
+          mvn -B package --file pom.xml
+
+      - name: Debug Maven Build Output
+        run: ls -R target
+
+      - name: Check for Artifacts
+        run: |
+          if [ ! -f target/*.jar ]; then
+            echo "Error: No artifacts found in target directory."
+            exit 1
+          fi
+
+      - name: build the docker image
+        run: docker build -t ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA} .
+  
+      - name: Login to GitHub Packages
+        run: docker login ghcr.io -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push Docker image to GitHub Packages
+        run: docker push ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA}
