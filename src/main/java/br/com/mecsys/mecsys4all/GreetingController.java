@@ -14,7 +14,7 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) throws InterruptedException {
-		Thread.sleep(1000); // Simulate a delay of 1s
+		Thread.sleep(5000); // Simulate a delay of 5s
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 }

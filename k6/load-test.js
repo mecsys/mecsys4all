@@ -9,6 +9,7 @@ export let options = {
         { duration: '30s', target: 500 }, // Mantem 500 VUs por 30 segundos
         { duration: '30s', target: 1000 }, // Mantem 1000 VUs por 30 segundos
         { duration: '30s', target: 2000 }, // Mantem 2000 VUs por 30 segundos
+        { duration: '300s', target: 10000 }, // Mantem 2000 VUs por 30 segundos
         { duration: '5s', target: 0 }   // Finaliza o teste
     ],
     thresholds: {
