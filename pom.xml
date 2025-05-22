@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.mecsys</groupId>
 	<artifactId>mecsys4all</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>mecsys4all</name>
 	<description>Spring Boot 3 and Spring Framework 6.</description>
 	<url/>
