@@ -14,6 +14,7 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		Thread.sleep(300); // Simulate a delay of 300ms
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 }
