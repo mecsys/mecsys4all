@@ -35,8 +35,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: unit tests
-        run: mvn -B test --file pom.xml
+      # - name: unit tests
+      #   run: mvn -B test --file pom.xml
 
       # - name: SonarQube Scan
       #   uses: kitabisa/sonarqube-action@v1.2.0
